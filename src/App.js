@@ -1,26 +1,32 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Provider } from 'react-redux';
+import { BrowserRouter, Route } from 'react-router-dom';
+
+import Nav from 'components/Nav';
+import { DarkTheme, LightTheme } from 'components/Nav/Theme';
+import Home from 'scenes/Home';
+import Portfolio from 'scenes/Portfolio';
+import PhotoView from 'scenes/PhotoView';
+import Admin from 'scenes/Admin';
+import store from 'services/store';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Provider store={store}>
+        <BrowserRouter>
+          <div>
+            <Nav />
+
+            <div className="views">
+              <Route path="/" exact component={LightTheme(Home)} />
+              <Route path="/portfolio" exact component={LightTheme(Portfolio)} />
+              <Route path="/view/:id" component={DarkTheme(PhotoView)} />
+              <Route path="/admin/" strict component={Admin} />
+            </div>
+          </div>
+        </BrowserRouter>
+      </Provider>
     );
   }
 }
