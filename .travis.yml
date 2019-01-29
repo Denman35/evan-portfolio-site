@@ -15,6 +15,5 @@ deploy:
   bucket: evanlissoos.com
   region: us-east-2
   local-dir: build
-  acl: ''
   on:
     repo: Denman35/evan-portfolio-site
