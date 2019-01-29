@@ -56,6 +56,16 @@ class PhotoView extends Component {
     }
 
     const { images, location, description } = imageData;
+    const og = images[images.length - 1];
+    const aspectRatio = og.height / og.width;
+    const browserAspect = window.innerHeight / window.innerWidth;
+
+    // These are derived directly from CSS rules for computing max-width/max-height
+    let size = '90vw';
+    if (aspectRatio > browserAspect) {
+      size = `${(window.innerHeight - 100) / aspectRatio}px`;
+    }
+    
     const srcset = images.map(i => `${i.url} ${i.width}w`);
     return (
       <div className="photo-view">
@@ -63,7 +73,7 @@ class PhotoView extends Component {
           <img
             src={images[images.length-1].url}
             srcSet={srcset.join(', ')}
-            sizes={`90vw`}
+            sizes={size}
             alt={imageData.title}
             onLoad={this.handleLoad}
           />
