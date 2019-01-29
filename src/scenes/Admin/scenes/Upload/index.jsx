@@ -3,6 +3,7 @@ import { Form, Text } from 'informed';
 
 import { uploadImage } from 'services/api/upload';
 
+import Batch from './Batch';
 import './styles.scss';
 
 const validate = value => {
@@ -28,16 +29,24 @@ class Upload extends Component {
       return;
     }
 
-    uploadImage(formState.values, img.files[0]);
+    this.setState({ fetching: true, error: null });
+    uploadImage(formState.values, img.files[0])
+      .then(() => this.setState({ fetching: false }))
+      .catch(err => this.setState({ fetching: false, error: err }));
   }
 
   setFormApi = (formApi) => { this.formApi = formApi; }
 
   render() {
-    return (
-      <div className="upload">
-        <h1>Upload a Photo</h1>
+    const { fetching, error } = this.state;
 
+    let body = null;
+    if (fetching) {
+      body = <p>Submitting...</p>
+    } else if (error) {
+      body = <p>{ error }</p>;
+    } else {
+      body = (
         <Form id="upload-form" getApi={this.setFormApi}>
           <label htmlFor="title">Title:</label>
           <Text field="title" id="title" initialValue="" />
@@ -53,6 +62,19 @@ class Upload extends Component {
 
           <button type="submit" onClick={this.handleSubmit}>Submit</button>
         </Form>
+      );
+    }
+
+    return (
+      <div className="upload">
+        <div className="pane">
+          <h1>Upload a Photo</h1>
+          { body }
+        </div>
+        <div className="pane">
+          <h1>Upload Batch</h1>
+          <Batch />
+        </div>
       </div>
     );
   }

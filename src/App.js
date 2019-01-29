@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 
 import Nav from 'components/Nav';
 import { DarkTheme, LightTheme } from 'components/Nav/Theme';
@@ -22,6 +22,7 @@ class App extends Component {
               <Route path="/" exact component={LightTheme(Home)} />
               <Route path="/portfolio" exact component={LightTheme(Portfolio)} />
               <Route path="/view/:id" component={DarkTheme(PhotoView)} />
+              <Route path="/admin" strict exact component={() => <Redirect to="/admin/" />} />
               <Route path="/admin/" strict component={Admin} />
             </div>
           </div>

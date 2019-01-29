@@ -60,6 +60,9 @@ class PhotoView extends Component {
     const aspectRatio = og.height / og.width;
     const browserAspect = window.innerHeight / window.innerWidth;
 
+    let delimiter = null;
+    if (location && description) { delimiter = " | "; }
+
     // These are derived directly from CSS rules for computing max-width/max-height
     let size = '90vw';
     if (aspectRatio > browserAspect) {
@@ -78,9 +81,11 @@ class PhotoView extends Component {
             onLoad={this.handleLoad}
           />
 
-          <div className="description">
-            <p><strong>{location}</strong> | {description}</p>
-          </div>
+          { (location || description) &&
+            <div className="description">
+              <p><strong>{location}</strong>{delimiter}{description}</p>
+            </div>
+          }
         </div>
 
         { prev &&
