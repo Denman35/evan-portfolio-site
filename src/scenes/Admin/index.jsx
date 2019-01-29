@@ -14,7 +14,6 @@ const Root = withRouter((props) => (
 class Admin extends Component {
   render() {
     const { match } = this.props;
-    console.log(this.props);
 
     return (
       <div className="admin container">

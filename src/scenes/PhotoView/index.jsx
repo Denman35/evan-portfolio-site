@@ -26,12 +26,12 @@ class PhotoView extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.match.params.id !== prevProps.match.params.id) {
-      this.fetchImage();
+      this.setState({ imageLoaded: false });
+      setTimeout(this.fetchImage, 220);
     }
   }
 
   fetchImage = () => {
-    this.setState({ fetching: true, imageLoaded: false });
     fetchImageById(this.props.match.params.id)
       .then(data => this.setState({
         fetching: false,
@@ -52,7 +52,7 @@ class PhotoView extends Component {
     const { imageData, fetching, prev, next, imageLoaded } = this.state;
 
     if (fetching || imageData === null) {
-      return <div className="photo-view" />;
+      return <div className="photo-view"><div className="photo loading" /></div>;
     }
 
     const { images, location, description } = imageData;

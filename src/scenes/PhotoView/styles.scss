@@ -9,7 +9,7 @@
 
   .photo {
     position: relative;
-    transition: opacity 0.5s;
+    transition: opacity 0.2s;
 
     &.ready { opacity: 1; }
     &.loading{ opacity: 0; }
