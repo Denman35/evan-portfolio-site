@@ -31,6 +31,7 @@ export const updateImageById = (id, body) => {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
+    credentials: 'include',
     body: JSON.stringify(body),
   }).then(response => {
     if (response.status >= 400) {

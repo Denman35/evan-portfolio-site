@@ -12,6 +12,7 @@ export const uploadImage = (data, image) => {
     headers: {
       Accept: 'application/json',
     },
+    credentials: 'include',
     body: formData,
   });
 }

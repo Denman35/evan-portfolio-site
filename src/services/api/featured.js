@@ -24,6 +24,7 @@ export const uploadFeatured = (ref, image) => {
     headers: {
       Accept: 'application/json',
     },
+    credentials: 'include',
     body: formData,
   });
 }

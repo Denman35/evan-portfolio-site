@@ -15,7 +15,6 @@ class Login extends Component {
 
   handleSubmit = () => {
     const { username, password } = this.formApi.getState().values;
-    console.log(username, password);
     this.props.login(username, password);
   }
 
