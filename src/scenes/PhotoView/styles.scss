@@ -43,6 +43,9 @@
     height: 22px;
 
     &.arrow-back { left: 15px; }
-    &.arrow-forward { right: 15px; }
+    &.arrow-forward {
+      transform: rotate(180deg);
+      right: 15px;
+    }
   }
 }

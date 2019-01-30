@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import arrow_back from 'assets/arrow_back.svg';
-import arrow_forward from 'assets/arrow_forward.svg';
 import { fetchImageById } from 'services/api/image';
 
 import './styles.scss';
@@ -95,7 +94,7 @@ class PhotoView extends Component {
         }
         { next &&
           <Link to={`/view/${next}`}  className="arrow arrow-forward">
-            <img src={arrow_forward} alt="Navigate forward" />
+            <img src={arrow_back} alt="Navigate forward" />
           </Link>
         }
       </div>
