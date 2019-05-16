@@ -22,6 +22,7 @@ export const login = (username, password) => {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
+    credentials: 'include',
     body: JSON.stringify({ username, password }),
   }).then(response => {
     if (response.status >= 400) {
