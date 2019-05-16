@@ -1,7 +1,13 @@
 import linearPartition from 'linear-partition';
 
+const MOBILE_PART = 1.3;
+const DESK_PART = 2.8;
+
 export const partitionBlock = (arr) => {
-  const numRows = Math.ceil(arr.length / 2.8);
+  /* eslint-disable no-restricted-globals */
+  const part = screen.width <= 600 ? MOBILE_PART : DESK_PART;
+  /* eslint-enable no-restricted-globals */
+  const numRows = Math.ceil(arr.length / part);
   const weights = arr.map(x => {
     const og = x.images[x.images.length-1];
     return og.width / og.height;

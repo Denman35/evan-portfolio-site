@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 .home {
   .center-text {
     align-items: center;
@@ -25,5 +27,15 @@
     position: absolute;
     top: 0;
     width: 100vw;
+  }
+
+  @media (max-width: $mobile-max) {
+    .center-text h1 {
+      font-size: 100px;
+    }
+
+    .columns .column.desktop-only {
+      display: none;
+    }
   }
 }

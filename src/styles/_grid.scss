@@ -23,6 +23,7 @@ $narrow-container-widths: (
 );
 
 .container {
+  box-sizing: border-box;
   margin: auto;
   padding-left: 15px;
   padding-right: 15px;

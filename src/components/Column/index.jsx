@@ -14,14 +14,14 @@ class Column extends Component {
   }
 
   render() {
-    const { url, to } = this.props;
+    const { className, url, to } = this.props;
     const { loaded } = this.state;
     const style = {
       backgroundImage: `url("${url}")`,
     };
     return (
       <Link
-        className={`column ${loaded ? 'ready' : 'loading'}`}
+        className={`column ${loaded ? 'ready' : 'loading'} ${className}`}
         style={style}
         to={`view/${to}`}
       >

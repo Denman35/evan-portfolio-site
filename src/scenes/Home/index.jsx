@@ -5,6 +5,8 @@ import { fetchFeatured } from 'services/api/featured';
 
 import './styles.scss';
 
+const MOBILE_COLUMNS = 4;
+
 class Home extends Component {
   constructor() {
     super();
@@ -31,8 +33,15 @@ class Home extends Component {
     const columns = [];
 
     if (!fetching && featured !== null) {
-      featured.forEach(f => {
-        columns.push(<Column url={f.url} to={f.ref} key={f._id} />);
+      featured.forEach((f, i) => {
+        columns.push(
+          <Column
+            className={i >= MOBILE_COLUMNS ? 'desktop-only' : ''}
+            url={f.url}
+            to={f.ref}
+            key={f._id}
+          />
+        );
       });
     }
 
